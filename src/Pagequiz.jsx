@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/quiz/header";
 import Score from "./components/quiz/score";
 import Question from "./components/quiz/Question"
-import Chrono from "./components/quiz/chrono"
+// import Chrono from "./components/quiz/chrono"
 import "./styles/crono.css"
 import { useNavigate } from "react-router-dom";
 import Message from "./components/quiz/message";
@@ -11,10 +11,21 @@ import Message from "./components/quiz/message";
 const Quiz = ()=>{
 
     const navigate = useNavigate()
-    const [connecter,SetConnecter] = useState([])
+    const [connecter,SetConnecter] = useState({})
     const [showMessage,setShowMessage] = useState(false)
     const [text,setText] = useState("")
-   
+    const [Iquiz,setIquiz] = useState(false)
+    const [score,setScore]=useState(0)
+    const [currentQuestion,setCurrentQuestion]= useState(null)
+
+       //hook question qui contient les differentes question et bonne reponse  
+       const [questions,setQuestion]= useState([
+        {question : "npm run dev permet de lancer un serveur node ? ",reponse:true, points: 2, time:5, index:0},
+        {question : "nodemon est un package de npm ? ",reponse:true , points: 2, time:5, index:1},
+        {question : "react est un framework coté backend  ? ",reponse:true , points: 2, time:5, index:2},
+        {question : "fichier css ne permet de styliser une balise ? ",reponse:false , points: 2 , time:5, index:3},
+        {question : "nodemon n'est pas un relanceur automatique de serveur? ",reponse:true , points: 2, time:5, index:4}
+    ])
 
 
     useEffect(()=>{
@@ -23,17 +34,11 @@ const Quiz = ()=>{
             navigate('/Connexion')
         }
         SetConnecter(tchek)
-    },[])
+        setCurrentQuestion(questions[0])
+    },[questions])
 
 
-    //hook question qui contient les differentes question et bonne reponse  
-    const [questions,setQuestion]= useState([
-        {question : "npm run dev permet de lancer un serveur node ? ",reponse:true, points: 2, time:60},
-        {question : "nodemon est un package de npm ? ",reponse:true , points: 2, time: 60},
-        {question : "react est un framework coté backend  ? ",reponse:true , points: 2, time:60},
-        {question : "fichier css ne permet de styliser une balise ? ",reponse:false , points: 2 ,time:60},
-        {question : "nodemon n'est pas un relanceur automatique de serveur? ",reponse:true , points: 2, time:60}
-    ])
+
 
     //hook tableaux vide qui permet de stocker les diffentes reponses 
     const [reponse,setReponse]=useState([])
@@ -50,8 +55,6 @@ const Quiz = ()=>{
             setReponse([...reponse, {question,reponse : rep}])
         }
     }
-    console.log(reponse);
-
 
     //function calcule scrore
     const calculScore =()=>{
@@ -67,9 +70,17 @@ const Quiz = ()=>{
             setIquiz(true)   
     }
 
-    const [Iquiz,setIquiz] = useState(false)
-    const [score,setScore]=useState(0)
 
+    //functio
+    const nextQuestion =(index)=>{
+        if(index>questions.length-1){
+            calculScore()
+        }else{
+            setCurrentQuestion(questions[index])
+        }       
+    }
+
+    
 
     return(
         <>
@@ -78,11 +89,18 @@ const Quiz = ()=>{
                 <Header title={connecter.nom}/>
                 <Message show={showMessage} text={text} setShowMessage={setShowMessage}/>
                 <Score Qlength={questions.length} Rlength={reponse.length}/>
-                <Chrono time={120} calculScore={calculScore} setShowMessage={setShowMessage} setText={setText}/>
+                {/* <Chrono time={30} calculScore={calculScore} setShowMessage={setShowMessage} setText={setText}/> */}
                 <div>
+                {currentQuestion && <Question question={currentQuestion.question} recup={getResponse} points={currentQuestion.points} time={currentQuestion.time} isActive={true} setCurrentQuestion={nextQuestion} index={currentQuestion?.index} answer={reponse.find(r => r.question===currentQuestion.question)?.reponse}/>}
+                    
                     {
-                        questions.map((q)=> {
-                            return <Question question={q.question} recup={getResponse} points={q.points}/>
+                        questions.filter((T,index) => {
+
+                            return index > currentQuestion?.index
+                            
+
+                        }).map((q, index)=> {
+                            return <Question question={q.question} recup={getResponse} points={q.points} time={q.time} isActive={false} />
                         })
                     }
                 </div>
@@ -105,7 +123,7 @@ const Quiz = ()=>{
                     </div>
                     
                     <div className="abso">
-                        <button onClick={(e) => {setReponse([]), setIquiz(false)}}> mettre a zero</button> 
+                        <button onClick={(e) => {setReponse([]); setIquiz(false); setCurrentQuestion(questions[0])}}> mettre a zero</button> 
                     </div>
                 </div>
             </div>

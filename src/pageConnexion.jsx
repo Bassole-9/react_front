@@ -17,6 +17,12 @@ const Connexion =()=>{
     }
 
 
+    const updateCurrentQuestion =()=>{
+        return(
+            <>
+            </>
+        )
+    }
 
     return(
         <>
@@ -30,7 +36,7 @@ const Connexion =()=>{
                         <input type="texte" name="" placeholder="email" value={info.email} onChange={(e)=> setInfo({...info, email : e.target.value})}/>
                     </div>
                     <div className="top">
-                        <input type="texte" name="" placeholder="Nom" value={info.motDePasse} onChange={(e)=> setInfo({...info, nom : e.target.value})}/>
+                        <input type="texte" name="" placeholder="Nom" value={info.nom} onChange={(e)=> setInfo({...info, nom : e.target.value})}/>
                     </div>
                     <button onClick={()=> Subtmit ()}>se connecter</button>
                 </form>

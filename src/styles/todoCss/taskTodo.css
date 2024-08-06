@@ -1,0 +1,65 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container_Task{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+}
+
+.Task{
+    width: 100%;
+    background-color: rgb(228, 228, 219);
+    text-align: center;
+    align-items: center;
+    padding: 30px;
+    max-width: 65%;
+    height: 50rem;
+}
+.Task h1{
+    font-size: 20px;
+}
+
+.Task .ajout{
+    
+    align-items: center;
+    border: 1px solid black;
+    padding: 20px 30px;
+    margin-top: 1rem;
+}
+.Task .ajout form{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.Task .ajout form input{
+    width: 70%;
+    outline: none;
+    padding-left: 1rem;
+    border: none;
+    border-radius: 10px;
+}
+
+.Task .ajout .supprim{
+    margin-top: 0rem;
+    background: red;
+    border: none;
+   outline: none;
+   padding: 5px;
+   border-radius: 15px;
+   margin-right: 1rem;
+}
+.Task .ajout .valid{
+    margin-top: 0rem;
+    background: rgb(0, 255, 68);
+    border: none;
+   outline: none;
+   padding: 5px;
+   border-radius: 15px;
+}

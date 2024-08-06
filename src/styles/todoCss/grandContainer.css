@@ -1,0 +1,10 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container_Tololiste{
+    margin-right: 2rem;
+    margin-left: 2rem;
+}

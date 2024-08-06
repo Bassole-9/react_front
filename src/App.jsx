@@ -4,6 +4,9 @@ import Connexion from './pageConnexion'
 import Inscription from './pageInscription'
 import { Route,Routes } from 'react-router-dom'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+import TodoListe from './todolist'
+import PasseWord from './passGenerator'
+
 
 
 function App() {
@@ -16,6 +19,14 @@ function App() {
     {
       path : "/Quiz",
       element : <Quiz/>   
+    },
+    {
+      path : "/Todoliste",
+      element : <TodoListe/>  
+    },
+    {
+      path : "/passeword",
+      element : <PasseWord/>
     },
 
 ])

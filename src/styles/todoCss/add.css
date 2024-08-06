@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container_Add{
+    width: 100%;
+    max-width: 30%;
+}
+
+
+.container_Add input{
+    width: 100%;
+    outline: none;
+    height: 2rem;
+    padding-left: 1rem;
+}
+
+.container_Add .input_Add{
+    display: flex;
+    justify-content:space-between;
+}
+
+.container_Add .input_Add .button_Add button{
+   background: green;
+   border: none;
+   outline: none;
+   padding: 5px;
+   border-radius: 15px;
+}
+
+.container_Add .input_Add .button_clear button{
+    background: red;
+    border: none;
+   outline: none;
+   padding: 5px;
+   border-radius: 15px;
+}
+

@@ -6,7 +6,7 @@ const ChangeColor = ()=>{
     const [color,setColor]= useState("#000000")
 
     useEffect(()=>{
-        console.log(color);
+       console.log(color);
     },[color])
 
 
