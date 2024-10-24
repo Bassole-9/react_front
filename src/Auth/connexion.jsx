@@ -12,10 +12,11 @@ const Connexion=()=>{
     })
     const envoie= async (e)=>{
         e.preventDefault()
-        const reques = await axios.post("http://localhost:3000/api/Auth/signIn",Connexion)
+        const reques = await axios.post("http://localhost:4000/api/Auth/signIn",Connexion)
         if(reques.status===200){
+          console.log(reques);
             localStorage.setItem("data",reques.data.data)
-            navigate("/discution")
+            navigate("/")
         }else{
             console.log("erreur lors de la connexion")
         }    

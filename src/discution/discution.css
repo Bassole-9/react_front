@@ -37,8 +37,9 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: end;
     justify-content: space-around;
+    margin-top: 2rem;
     
 }
 .container_discution .section_discution .cadre .input_dis input{
@@ -64,4 +65,31 @@
     color: white;
     font-weight: bolder;
     margin: .5rem 0;
+}
+
+.espace{
+    border: 2px solid white;
+}
+
+.btn_sup{
+   padding: 10px 10px;
+   border-radius: 10px;
+   background: rgb(242, 68, 68);
+   outline: none;
+   cursor: pointer;
+   border: none;
+
+}
+
+.btn_ajout{
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin-left: 1rem;
+    cursor: pointer;
+    border: none;
+}
+
+.btn_ajout:hover{
+    background: rgb(83, 83, 243);
+    transition: 0.5s;
 }

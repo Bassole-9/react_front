@@ -12,21 +12,27 @@ model User {
   email   String   @unique
   phoneNumber String @unique
   password  String
-  chats Chat[]
+  chats Chat[] @relation("user")
+  chatContact Chat[] @relation("contact")
 }
 
 model Chat{
   id    Int  @id @default(autoincrement()) 
-  name String
+  name String?
   userId Int
-  user  User  @relation(fields:[userId],references:[id])
-  Messages Message[]  
+  contactId Int
+  user  User  @relation(fields:[userId],references:[id],name: "user")
+  contact  User  @relation(fields:[contactId],references:[id],name: "contact")
+  Messages Message[]
+  @@unique([userId,contactId])  
+  @@map("Chats")
 }
 
 model Message{
   id    Int  @id @default(autoincrement()) 
   text  String 
-  isFromIa Boolean @default(false)
+  isFromIa Boolean? @default(false)
+  senderId Int?
   date  DateTime  @default(now())
   ChatId   Int
   chat Chat  @relation(fields:[ChatId],references:[id])  

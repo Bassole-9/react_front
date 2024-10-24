@@ -29,7 +29,7 @@ export const signIn = async (req,res)=>{
             }
         })
         if(verif){
-            const tokens = await generateToken({id:verif.id,email:verif.email})
+            const tokens = await generateToken({id:verif.id,email:verif.email,name:verif.name})
             if(tokens){
                 res.json({statut:true,data:tokens})
             }else{

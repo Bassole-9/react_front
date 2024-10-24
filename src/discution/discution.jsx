@@ -14,14 +14,25 @@ const Discution =()=>{
    
 
     useEffect(()=>{
-        const socket = new io("http://localhost:3000",{
+        const socket = new io("http://localhost:4000",{
             auth:{
                 token:localStorage.getItem("data")
             }
         })
         socket.on("connect",()=>{
+            socket.send("bonjour")
             console.log("connect");
+            // socket.emit("discution")
         })
+
+        socket.on("message",(msg)=>{
+            console.log(msg);
+        })
+
+        socket.on("salut",(messa)=>{
+            console.log(messa);
+        })
+        
     },[])
 
 
@@ -33,38 +44,43 @@ const Discution =()=>{
 
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/Chat/discution",{
+        axios.get("http://localhost:4000/api/Chat/discution",{
             headers:{
                 Authorization:localStorage.getItem("data")
             }
         }).then(res => {
             if(res.status===200){
+                console.log(res);
                 setDiscour(res.data)
             }else{
             }
         })
     },[])
 
+
+
     const envoie= async (e)=>{
         e.preventDefault()
-        const reques = await axios.post("http://localhost:3000/api/Chat/AddChat",{
+        const reques = await axios.post("http://localhost:4000/api/Chat/AddChat",{
             name:discution
         },
-        {
+        { 
             headers:{
                 Authorization:localStorage.getItem("data")
             }
         }
         )
         if(reques.status===200){
-            navigate("/Chat/"+reques.data.id)
+            setDiscour((discour)=> [...discour,reques.data])
+            // navigate("/Chat/"+reques.data.id)
         }else{
-            console.log("erreur lors dde l'ajout du Chat")
+            console.log("erreur lors de l'ajout du Chat")
         }
     }
 
+
     const supprimer= async (supprime)=>{
-            const supprimer = await axios.delete("http://localhost:3000/api/Chat/"+supprime,{
+            const supprimer = await axios.delete("http://localhost:4000/api/Chat/"+supprime,{
                 headers:{
                     Authorization: localStorage.getItem("data")
                 },   
@@ -72,12 +88,9 @@ const Discution =()=>{
             if(supprimer.status===200){
                 setDiscour(discour.filter((f)=>f.id!=supprimer.data.id))
             }else{
-
+                console.log("erreur lors de suppression du Chat")
             }
     }
-
-
-
 
 
     return(
@@ -91,15 +104,15 @@ const Discution =()=>{
                     <div className="cadre">
                         <div className="input_dis">
                             <input type="text" value={discution} onChange={(e)=>setDiscution(e.target.value)}/>
-                            <button onClick={envoie}>commencer</button>
+                            <button className="btn_ajout" onClick={envoie}>+</button>
                         </div>
                       
                         <div className="black">
                                 {
                                     discour.map((m,id)=>{
                                         return<div key={id} >
-                                            <div onClick={()=>navigate("/Chat/"+m.id)}>{m.name}</div>
-                                            <button onClick={(e)=>supprimer(m.id)}>supprimer dis</button>
+                                            <div className="espace" onClick={()=>navigate("/Chat/"+m.id)}>{m.name}</div>
+                                            <button className="btn_sup" onClick={(e)=>supprimer(m.id)}>supprimer</button>
                                         </div>
                                         
                                     })

@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import "./css/inscription.css"
 
 
-const Inscription=()=>{
+const Inscription =()=>{
     const Navigate=useNavigate()
 
-    const [inscription,setInscription]=useState({
+    const [inscription,setInscriptions]=useState({
         name:"",
         email:"",
         phoneNumber:"",
@@ -17,15 +17,13 @@ const Inscription=()=>{
 
     const signUp=async(e)=>{
         e.preventDefault()
-        const reques = await axios.post("http://localhost:3000/api/Auth/signUp",inscription)
+        const reques = await axios.post("http://localhost:4000/api/Auth/signUp",inscription)
         if (reques.status===200){
              Navigate("/connexion")  
         }else{
             console.log("error lors de la connexion")
         }
     }
-
-
 
     return (
         <>
@@ -56,7 +54,7 @@ const Inscription=()=>{
                     name=""
                     placeholder="Name*"
                     value={inscription.name}
-                    onChange={(e) => setInscription({ ...inscription, name: e.target.value })}
+                    onChange={(e) => setInscriptions({ ...inscription, name: e.target.value })}
                   />
                   <hr />
                 </div>
@@ -67,7 +65,7 @@ const Inscription=()=>{
                     placeholder="E-mail*"
                     value={inscription.email}
                     onChange={(e) =>
-                        setInscription({ ...inscription, email: e.target.value })
+                        setInscriptions({ ...inscription, email: e.target.value })
                     }
                   />
                   <hr />
@@ -88,7 +86,7 @@ const Inscription=()=>{
                     type="text"
                     placeholder="Phone Number*"
                     value={inscription.phoneNumber}
-                    onChange={(e) => setInscription({ ...inscription, phoneNumber: e.target.value })}
+                    onChange={(e) => setInscriptions({ ...inscription, phoneNumber: e.target.value })}
                   />
                   <hr />
                 </div>
@@ -98,7 +96,7 @@ const Inscription=()=>{
                     placeholder="Password*"
                     value={inscription.password}
                     onChange={(e) =>
-                        setInscription({ ...inscription, password: e.target.value })
+                        setInscriptions({ ...inscription, password: e.target.value })
                     }
                   />
                   <hr />

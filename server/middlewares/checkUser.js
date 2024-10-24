@@ -4,7 +4,6 @@ import Prisma from "../lib/Prisma-client.js";
 const checkUSer = async (req,res,next)=>{
     try {
         const token = req.headers["authorization"]
-        console.log("log du headers",token);
         if(token){
             const verif = await verifyToken(token)
             if(verif){
@@ -15,6 +14,7 @@ const checkUSer = async (req,res,next)=>{
                 })
                 if(user){
                     res.locals.userId = verif.id
+                    res.locals.userName = verif.name
                     next()
                 }else{
                     res.status(403).send("user n'exisite pas")

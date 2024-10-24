@@ -4,12 +4,16 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import Passe from './passeWord/passe'
 import AlarmeDay from './AlarmeDay'
 import TchatMessage from './tchat'
-import Inscription from './Auth/inscription'
+
 import Connexion from './Auth/connexion'
+import Inscription from './Auth/inscription'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Discution from './discution/discution'
+import "./index.css"
+import Home from './discution/Home'
+
 
 const Wraper=({Component})=>{
   const [loading,setLoading]=useState(true)
@@ -18,7 +22,7 @@ const Wraper=({Component})=>{
 
   useEffect(()=>{
     let session = localStorage.getItem("data")
-    const sessionDeco=["/connexion","/inscription"]
+    const sessionDeco=["/connexion","/inscrire"]
     
     if(session && sessionDeco.includes(location.pathname)){
         navigate("/")
@@ -50,16 +54,26 @@ function App() {
       element : <Wraper Component={TchatMessage}/>   
     },
     // {
-    //   path : "/inscription",
+    //   path : "/inscrire",
     //   element : <Wraper Component={Inscription}/>   
     // },
+   
     {
       path : "/connexion",
       element : <Wraper Component={Connexion}/>   
     },
+   
+    {
+      path : "/inscrire",
+      element : <Wraper Component={Inscription}/>   
+    },
     {
       path : "/Discution",
       element : <Wraper Component={Discution}/>   
+    },
+    {
+      path : "/",
+      element : <Wraper Component={Home}/>   
     },
 ])
 
