@@ -1,0 +1,110 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.container_inscription {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.container .section_inscription {
+  width: 50%;
+}
+
+.container .section_inscription form {
+  background-color: rgb(49, 109, 118);
+  width: 100%;
+  padding: 0px 15px;
+  border-radius: 15px;
+}
+
+.container .section_inscription form .xxx {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+}
+.container .section_inscription form .xxx .x1 {
+  color: black;
+}
+
+.container .section_inscription form .inscri_connexion {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.container .section_inscription form .inscri_connexion p {
+  color: black;
+}
+
+.container .section_inscription form .inscri2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.container .section_inscription form .inscri2 .rond {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 100%;
+  border: 1px solid black;
+  margin-right: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.container .section_inscription form .inscri4 {
+  margin-top: 3.5rem;
+}
+.container .section_inscription form .inscri4 input {
+  padding: 10px 12px;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.container .section_inscription form .inscri4 input::placeholder {
+  color: rgba(255, 255, 255, 0.729);
+}
+
+.container .section_inscription form .inscri4 input .text {
+  color: white;
+}
+
+.container .section_inscription form .btn_form {
+  width: 100%;
+  padding: 18px;
+  border-radius: 100px;
+  margin-top: 2.8rem;
+  background-color: rgba(213, 213, 213, 0.707);
+}
+
+.container .section_inscription form .dejas {
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.container .section_inscription form .dejas p {
+  color: black;
+}
+
+.container .section_inscription form .dejas p .co {
+  text-decoration: none;
+  color: white;
+}
+
+.container .section_inscription .mot {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
